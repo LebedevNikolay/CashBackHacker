@@ -1,33 +1,36 @@
 package ru.netology.service;
 
-import org.testng.annotations.Test;
-
-import static org.testng.AssertJUnit.*;
-
 public class CashbackHackServiceTest {
     CashbackHackService service = new CashbackHackService();
 
-    @Test
-    public void shouldAmountEquallyReturned() {
 
-        int expected = 1000;
-        int actual = service.remain(1000);
-        assertEquals(actual, expected);
+    @org.testng.annotations.Test
+    public void testRemainBoundaryValuesTwo() {
+        org.testng.Assert.assertEquals(service.remain(0), 1000);
     }
 
-    @Test
-    public void shouldAmountLessReturned() {
-
-        int expected = 1000;
-        int actual = service.remain(0);
-        assertEquals(actual, expected);
+    @org.testng.annotations.Test
+    public void testRemainBoundaryValuesThree() {
+        org.testng.Assert.assertEquals(service.remain(1), 999);
     }
 
-    @Test
-    public void shouldAmountMoreReturned() {
+    @org.testng.annotations.Test
+    public void testRemainBoundaryValuesFour() {
+        org.testng.Assert.assertEquals(service.remain(999), 1);
+    }
 
-        int expected = 0;
-        int actual = service.remain(1000);
-        assertEquals(actual, expected);
+    @org.testng.annotations.Test
+    public void testRemainBoundaryValuesFive() {
+        org.testng.Assert.assertEquals(service.remain(1000), 0);
+    }
+
+    @org.testng.annotations.Test
+    public void testRemainBoundaryValuesSix() {
+        org.testng.Assert.assertEquals(service.remain(1001), 999);
+    }
+
+    @org.testng.annotations.Test
+    public void testRemainCriticalPath() {
+        org.testng.Assert.assertEquals(service.remain(400), 600);
     }
 }
